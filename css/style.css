@@ -1,0 +1,93 @@
+ body {
+     font-size: 18px;
+ }
+
+ .datagrid-header-row,
+ .datagrid-row {
+     height: 50px;
+
+ }
+
+ .datagrid-cell,
+ .l-btn-text {
+     font-size: 16px
+ }
+
+ .products,
+ .categories, .ingredients ,.histories {
+     display: flex;
+     flex-wrap: wrap;
+     align-content: flex-start;
+ }
+
+ .categories {
+     align-content: center;
+ }
+
+ .product_item , .history_item {
+     height: 150px;
+     flex: 0 0 25%;
+     
+ }
+ .history_item
+ {
+     height:100px;
+ }
+
+ .category_item {
+     flex: 0 0 33%;
+     height: 100%;
+ }
+.ingreients_item{
+    flex:0 0 33%;
+    height:33%;
+}
+
+ .product,
+ .product_noimg {
+     background-position: center;
+     /* Center the image */
+     background-repeat: no-repeat;
+     /* Do not repeat the image */
+     background-size: cover;
+     /*color: white;*/
+
+ }
+
+ .product_noimg {
+
+     background: blue;
+ }
+
+ #sum {
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+     height: 40px;
+ }
+
+ .sum_item {
+
+     width: 80px;
+     font-size: 16px;
+ }
+
+ .sum {
+     text-align: right;
+     padding-right: 20px;
+ }
+ @media (max-width: 480px) {
+     body{
+         font-size:14px;
+     }
+     .datagrid-cell,
+ .l-btn-text {
+     font-size: 14px
+ }
+ .product_item ,history{
+    height: 100px;
+    flex: 0 0 50%;
+    
+}
+
+}

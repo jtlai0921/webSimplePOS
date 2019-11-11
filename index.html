@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>POS系統</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="jquery-easyui/themes/icon.css">
+    <link href="css/all.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    
+
+</head>
+
+<body class="easyui-layout">
+
+
+
+
+    <div data-options="region:'east',collapsible:false"
+        title="訂單 : <span id='order_id'></span><span id='modify'></span>" style="width:50%;">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'south'" style="height:50%;text-align:center">
+                <table style="width:95%;height:95%">
+                    <tr style="height:20%">
+                        <td style="width:25%"><a href="#" class="easyui-linkbutton" data-options="fit:true"
+                                data-v="num1" onClick="fireButton(this)">1</a></td>
+                        <td style="width:25%"><a href="#" class="easyui-linkbutton" data-options="fit:true"
+                                data-v="num2" onClick="fireButton(this)">2</a></td>
+                        <td style="width:25%"><a href="#" class="easyui-linkbutton" data-options="fit:true"
+                                data-v="num3" onClick="fireButton(this)">3</a></td>
+                        <td style="width:25%"><a href="#" class="easyui-linkbutton" data-options="fit:true"
+                                data-v="back" onClick="fireButton(this)"><i class="fas fa-arrow-left"></i></a></td>
+                    </tr>
+                    <tr style="height:20%">
+                        <td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="num4"
+                                onClick="fireButton(this)">4</a></td>
+                        <td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="num5"
+                                onClick="fireButton(this)">5</a></td>
+                        <td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="num6"
+                                onClick="fireButton(this)">6</a></td>
+                        <td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="del"
+                                onClick="fireButton(this)">刪除</a></td>
+                    </tr>
+                    <tr style="height:20%">
+                        <td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="num7"
+                                onClick="fireButton(this)">7</a></td>
+                        <td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="num8"
+                                onClick="fireButton(this)">8</a></td>
+                        <td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="num9"
+                                onClick="fireButton(this)">9</a></td>
+                        <td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="rmk"
+                                onClick="fireButton(this)">備註</a></td>
+                    </tr>
+                    <tr style="height:20%">
+                        <td>
+                            <a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="new"
+                                onClick="fireButton(this)">新單</a>
+                        </td>
+                        <!--<td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="delAll" onClick="fireButton(this)">整單刪除</a></td>-->
+                        <td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="num0"
+                                onClick="fireButton(this)">0</a></td>
+                        <!--<td><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="his" onClick="fireButton(this)">歷史單</a></td>-->
+                        <td colspan="2"><a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="ing"
+                                onClick="fireButton(this)">加料</a></td>
+                    </tr>
+                    <tr>
+
+                        <td colspan="3">
+                            <a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="sure"
+                                data-print="true" onClick="fireButton(this)">確認及列印</a>
+                        </td>
+                        <td>
+                            <a href="#" class="easyui-linkbutton" data-options="fit:true" data-v="sure"
+                                data-print="false" onClick="fireButton(this)">確認</a>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div data-options="region:'center'">
+                <div class="easyui-layout" data-options="fit:true">
+                    <div data-options="region:'center'">
+                        <table class="easyui-datagrid"
+                            data-options="singleSelect:true,fitColumns:true,striped:true,autoRowHeight:false,fit:true,onSelect:function(idx,row){row.new = true;}"
+                            id="cars">
+                            <thead>
+                                <tr>
+                                    <th data-options="field:'item_id',hidden:true">id</th>
+                                    <th
+                                        data-options="field:'cname',width:50,styler:function(value,row,index){return 'color:red';}">
+                                        名稱</th>
+                                    <th data-options="field:'qty',width:40,fixed:true">量</th>
+                                    <th data-options="field:'sa_price',width:40,fixed:true">價</th>
+                                    <th data-options="field:'sum',width:40,fixed:true">計</th>
+                                    <th data-options="field:'new',hidden:true">id</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div data-options="region:'south'" id="sum">
+                        <div class="sum_item">總計：</div>
+                        <div class="sum sum_item"> 0</div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'center'">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north'" style="height:100px;">
+                <div class="easyui-panel categories" style="padding:5px" data-options="fit:true">
+
+                </div>
+
+            </div>
+            <div data-options="region:'center'" id="products">
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="ingredientsWin" class="easyui-window" title="加料選擇" style="width:600px;height:400px"
+        data-options="modal:true,closed:true,maximizable:false,minimizable:false,collapsible:false">
+
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'south'" style="height:70px;">
+
+                <a href="#" class="easyui-linkbutton" data-options="fit:true" onClick="fireIng(this);">關閉</a>
+
+
+            </div>
+            <div data-options="region:'center'" id="ingredientsPanel" class="ingredients">
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <div id="printWin" class="easyui-window" title="列印" style="width:600px;height:400px"
+        data-options="modal:true,closed:true,maximizable:false,minimizable:false,collapsible:false">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'south'" style="height:70px;">
+
+                <a href="#" class="easyui-linkbutton" data-options="fit:true" onClick="closeWin('printWin');">關閉</a>
+
+
+            </div>
+            <div data-options="region:'center'">
+                <iframe frameBorder="0" id="printPanel" style="width:100%;height:98%;">
+                </iframe>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div id="rmkWin" class="easyui-window" title="備註" style="width:600px;height:400px"
+        data-options="modal:true,closed:true,maximizable:false,minimizable:false,collapsible:false">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'south'" style="height:70px;">
+                <a href="#" class="easyui-linkbutton" data-options="fit:true" onClick="rmkSure();">確認</a>
+            </div>
+            <div data-options="region:'center'">
+
+                <textarea style="width:100%;height:100%;padding:0px;margin:0px;border:0" id="rmk"></textarea>
+
+            </div>
+        </div>
+    </div>
+    <div id="historyWin" class="easyui-window" title="歷史單" style="width:600px;height:400px"
+        data-options="modal:true,closed:true,maximizable:false,minimizable:false,collapsible:false">
+
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'south'" style="height:70px;">
+
+                <a href="#" class="easyui-linkbutton" data-options="fit:true" onClick="closeWin('historyWin');">關閉</a>
+
+            </div>
+            <div data-options="region:'center'" id="historysPanel" class="histories">
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <script id="cateTmpl" type="text/x-jsrender">
+            <div class="category_item">
+                <a href="#" class="easyui-linkbutton" data-options="fit:true,toggle:true,group:'g1'" data-id="{{:cate_id}}" onClick="fireCate(this);">{{:cate_name}}</a>
+            </div>
+        </script>
+    <script id="ingTmpl" type="text/x-jsrender">
+            <div class="ingreients_item">
+                <a href="#" class="easyui-linkbutton" data-options="fit:true,group:'i1'" data-id="{{:ing_id}}" data-price="{{:sa_price}}" data-name="{{:cname}}" onClick="fireIng(this);">{{:cname}}<br/>{{:sa_price}}元</a>
+            </div>
+        </script>
+    <script id="prdTmpl" type="text/x-jsrender">
+            <div class="product_item" >
+                <a href="#" class="easyui-linkbutton product {{:css_class}}" style="{{:css_style}}"
+                    data-options="toggle:true,fit:true,group:'item'" onClick="fireProduct(this)" data-id="{{:item_id}}">
+                    <h3>{{:cname}}</h3>
+                    <h4>{{:sa_price}}元</h4>
+                </a>
+            </div>
+        </script>
+    <script id="hisTmpl" type="text/x-jsrender">
+                    <div class="history_item" >
+                        <a href="#" class="easyui-linkbutton history "
+                            data-options="toggle:true,fit:true,group:'his'" onClick="fireHistory(this)" data-id="{{:ord_id}}">
+                            <h3>{{:ord_id}}</h3>
+                            <h4>{{:sum_tot}}元</h4>
+                        </a>
+                    </div>
+                </script>
+
+    <script type="text/javascript" src="jquery-easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="js/jsrender.min.js"></script>
+    <script type="text/javascript" src="js/pos.js"></script>
+</body>
+
+</html>
