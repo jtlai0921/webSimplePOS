@@ -3,3 +3,5 @@
 
 Screen
 ![image](https://github.com/catyku/webSimplePOS/blob/master/screen1.png)
+demo
+https://blog.yslifes.com/demo/SimplePOS/
